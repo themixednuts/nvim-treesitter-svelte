@@ -1,25 +1,32 @@
 # nvim-treesitter-svelte
 
-Opt-in Svelte support for `nvim-treesitter` using `themixednuts/tree-sitter-htmlx`.
+Use the `svelte5` parser for Svelte files in `nvim-treesitter`.
 
-This repo registers a separate parser name, `svelte5`, and ships matching queries for it.
-It does not modify `nvim-treesitter`'s built-in `svelte` parser unless you explicitly map the
-`svelte` filetype to `svelte5` in your config.
+This plugin uses `themixednuts/tree-sitter-htmlx` under the hood and ships `svelte5` queries for:
 
-It also adds filetype detection for `*.svelte.ts` and `*.svelte.js`. Names like
-`+page.server.svelte` and `*.spec.svelte` already work because they still end in `.svelte`.
+- highlights
+- injections
+- indents
+- folds
+- locals
+- `nvim-treesitter-context`
+- `nvim-treesitter-textobjects`
+
+It supports normal Svelte filenames like `Component.svelte`, `+page.server.svelte`, and
+`Component.spec.svelte`, and it also adds filetype detection for `*.svelte.ts` and `*.svelte.js`.
 
 ## Install
 
-Example with `lazy.nvim`:
+With `lazy.nvim`:
 
 ```lua
 {
   'nvim-treesitter/nvim-treesitter',
+  build = ':TSUpdate',
   lazy = false,
 },
 {
-  dir = 'E:/Projects/nvim-treesitter-svelte',
+  'themixednuts/nvim-treesitter-svelte',
   main = 'nvim-treesitter-svelte',
   lazy = false,
   dependencies = { 'nvim-treesitter/nvim-treesitter' },
@@ -29,38 +36,39 @@ Example with `lazy.nvim`:
 }
 ```
 
-Then install the parser:
+Install the parser:
 
 ```vim
 :TSInstall svelte5
 ```
 
-After the first install, restart Neovim or run:
+For embedded language highlighting, also install the parsers you use inside Svelte files:
+
+```vim
+:TSInstall javascript typescript css scss json regex comment
+```
+
+Restart Neovim after the first install, or run:
 
 ```lua
 require('nvim-treesitter-svelte').load()
 ```
 
-If you only want the parser available without taking over `.svelte` files yet, omit `filetypes`.
+## Notes
 
-## What `setup()` does
+- buffer `filetype` stays `svelte`
+- Tree-sitter language becomes `svelte5`
+- `nvim-treesitter-context` and `nvim-treesitter-textobjects` work without extra query setup
 
-- registers a custom parser named `svelte5`
-- points it at `themixednuts/tree-sitter-htmlx` in `crates/tree-sitter-svelte`
-- optionally maps Neovim filetypes like `svelte` to `svelte5`
-- adds filetype detection for `.svelte.ts` and `.svelte.js`
-- provides queries under `queries/svelte5`
+If you want the parser installed without taking over Svelte buffers yet, omit `filetypes` from the
+setup options.
 
 ## Configuration
 
 ```lua
 require('nvim-treesitter-svelte').setup({
-  parser_name = 'svelte5',
   filetypes = { 'svelte' },
-  install_info = {
-    url = 'https://github.com/themixednuts/tree-sitter-htmlx',
-    location = 'crates/tree-sitter-svelte',
-    revision = '3be6db3dc94478b089a64e59e4d855fc3041a7be',
-  },
+  parser_name = 'svelte5',
+  detect_filetypes = true,
 })
 ```
