@@ -30,9 +30,7 @@ With `lazy.nvim`:
   main = 'nvim-treesitter-svelte',
   lazy = false,
   dependencies = { 'nvim-treesitter/nvim-treesitter' },
-  opts = {
-    filetypes = { 'svelte' },
-  },
+  opts = {},
 }
 ```
 
@@ -57,17 +55,16 @@ require('nvim-treesitter-svelte').load()
 ## Notes
 
 - buffer `filetype` stays `svelte`
-- Tree-sitter language becomes `svelte5`
+- Tree-sitter language defaults to `svelte5`
 - `nvim-treesitter-context` and `nvim-treesitter-textobjects` work without extra query setup
 
-If you want the parser installed without taking over Svelte buffers yet, omit `filetypes` from the
-setup options.
+If you want the parser installed without taking over Svelte buffers yet, set `filetypes = {}` in
+the setup options.
 
 ## Configuration
 
 ```lua
 require('nvim-treesitter-svelte').setup({
-  filetypes = { 'svelte' },
   parser_name = 'svelte5',
   detect_filetypes = true,
 })

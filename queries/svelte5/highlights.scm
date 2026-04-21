@@ -30,6 +30,21 @@
 (shorthand_attribute
   content: (_) @variable)
 
+((start_tag) @_start_tag
+  (#set! @_start_tag bo.commentstring "// %s"))
+
+((self_closing_tag) @_self_closing_tag
+  (#set! @_self_closing_tag bo.commentstring "// %s"))
+
+((attribute) @_attribute
+  (#set! @_attribute bo.commentstring "// %s"))
+
+((shorthand_attribute) @_shorthand_attribute
+  (#set! @_shorthand_attribute bo.commentstring "// %s"))
+
+((tag_comment) @_tag_comment
+  (#set! @_tag_comment bo.commentstring "// %s"))
+
 [
   "{"
   "}"

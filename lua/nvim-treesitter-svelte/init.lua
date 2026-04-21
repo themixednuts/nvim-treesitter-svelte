@@ -3,12 +3,12 @@ local M = {}
 local defaults = {
   parser_name = 'svelte5',
   symbol_name = 'svelte',
-  filetypes = {},
+  filetypes = { 'svelte' },
   detect_filetypes = true,
   install_info = {
     url = 'https://github.com/themixednuts/tree-sitter-htmlx',
     location = 'crates/tree-sitter-svelte',
-    revision = '3be6db3dc94478b089a64e59e4d855fc3041a7be',
+    revision = '8e1a2750c5d40a8f5653068f968d2eeca65799c1',
   },
 }
 
