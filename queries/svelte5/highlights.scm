@@ -109,6 +109,8 @@
 (const_tag
   "const" @keyword.modifier)
 
+(declaration_kind) @keyword.modifier
+
 (debug_tag
   "debug" @keyword.debug)
 

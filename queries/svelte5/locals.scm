@@ -7,6 +7,16 @@
 
 (snippet_name) @local.definition.function
 
+((const_tag
+  expression: (expression_value
+    content: (_) @local.definition))
+  (#match? @local.definition "\\S"))
+
+((declaration_tag
+  declaration: (expression_value
+    content: (_) @local.definition))
+  (#match? @local.definition "\\S"))
+
 ((tag_name) @local.reference
   (#lua-match? @local.reference "^[A-Z]"))
 

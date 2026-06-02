@@ -8,7 +8,7 @@ local defaults = {
   install_info = {
     url = 'https://github.com/themixednuts/tree-sitter-htmlx',
     location = 'crates/tree-sitter-svelte',
-    revision = '8e1a2750c5d40a8f5653068f968d2eeca65799c1',
+    revision = 'c9b9cc35709fff494a3a9e41cd9471b633649e45',
   },
 }
 
